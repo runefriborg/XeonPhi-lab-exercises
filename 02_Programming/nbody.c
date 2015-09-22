@@ -80,13 +80,13 @@ void Perform_NBody()
 #	pragma omp parallel for private(i) schedule(static)
 	for (i = 0; i < number_of_bodies; i++)
 	{
-		FPTYPE pos_x = Position[3*i+0], pos_y = Position[3*i+1], pos_z = Position[3*i+2];
+		FPTYPE pos_x = Position_X[i], pos_y = Position_Y[i], pos_z = Position_Z[i];
 		FPTYPE acc_x = 0, acc_y = 0, acc_z = 0;
 		for (j = 0; j < number_of_bodies; j++)
 		{
-			FPTYPE delta_x = Position[3*j+0] - pos_x;
-			FPTYPE delta_y = Position[3*j+1] - pos_y;
-			FPTYPE delta_z = Position[3*j+2] - pos_z;
+			FPTYPE delta_x = Position_X[j] - pos_x;
+			FPTYPE delta_y = Position_Y[j] - pos_y;
+			FPTYPE delta_z = Position_Z[j] - pos_z;
 
 			FPTYPE gamma = delta_x*delta_x + delta_y*delta_y + delta_z*delta_z + epsilon_sqr;
 			FPTYPE s = Mass[j] / (gamma * SQRT(gamma));
@@ -94,9 +94,9 @@ void Perform_NBody()
 			acc_y += s * delta_y;
 			acc_z += s * delta_z;
 		}
-		Acceleration[3*i+0] += acc_x;
-		Acceleration[3*i+1] += acc_y;
-		Acceleration[3*i+2] += acc_z;
+		Acceleration_X[i] += acc_x;
+		Acceleration_Y[i] += acc_y;
+		Acceleration_Z[i] += acc_z;
 	}
 }
 
