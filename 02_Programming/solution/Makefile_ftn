@@ -1,0 +1,19 @@
+# VEC = -no-vec
+
+VERSIONS = v0_orig v1_datatype v2_datalayout v3_simd v4_aligned v5_blocked
+TARGETS=$(addprefix nbody_, $(VERSIONS))
+TARGETS_MIC=$(addsuffix .mic, $(TARGETS))
+
+all: $(TARGETS) $(TARGETS_MIC)
+
+$(TARGETS): .ALWAYSEXEC
+	ifort -O3 -openmp -openmp-report -vec-report=5 $(VEC) -fpp -debug inline-debug-info -o $@ $@.F90 -xHost
+
+$(TARGETS_MIC): .ALWAYSEXEC
+	ifort -O3 -openmp -openmp-report -vec-report=5 $(VEC) -fpp -debug inline-debug-info -o $@ $(subst .mic,,$@).F90 -xHost
+
+clean:
+	-rm -rf *~ *.o *.optrpt *.mod
+	-rm -rf $(TARGETS) $(TARGETS_MIC)
+
+.ALWAYSEXEC:

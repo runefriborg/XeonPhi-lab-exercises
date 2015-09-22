@@ -1,0 +1,12 @@
+VEC = -no-vec
+
+SRF = nbody.F90
+
+nbody: nbody.F90
+	ifort -O3 -openmp -openmp-report -vec-report=5 $(VEC) -fpp -debug inline-debug-info -o nbody $(SRF) -xHost
+
+nbody.mic: nbody.F90
+	ifort -O3 -openmp -openmp-report -vec-report=5 $(VEC) -fpp -debug inline-debug-info -o nbody.mic $(SRF) -mmic
+
+clean:
+	-rm -rf *~ *.o nbody *.optrpt *.mod

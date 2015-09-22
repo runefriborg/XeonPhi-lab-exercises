@@ -1,0 +1,18 @@
+VERSIONS = v0_orig v1_target v2_tofrom v3_data v4_declare
+TARGETS_OFFLOAD=$(addprefix nbody_, $(VERSIONS))
+
+all: $(TARGETS_OFFLOAD) nbody
+
+$(TARGETS_OFFLOAD): .ALWAYSEXEC
+	icc -Wall -O3 -ansi-alias -openmp \
+	-std=gnu99 -debug inline-debug-info -o $@ $(subst -offload,,$@).c -xHost
+
+nbody: nbody_v0_orig.c .ALWAYSEXEC
+	icc -O3 -ansi-alias -no-openmp-offload -openmp -openmp-report \
+	-vec-report=5 -std=gnu99 -debug inline-debug-info -o $@ $< -xHost
+
+clean:
+	-rm -rf *~ *.o *.optrpt
+	-rm -rf nbody $(TARGETS_OFFLOAD)
+
+.ALWAYSEXEC:
