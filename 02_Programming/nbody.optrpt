@@ -1,0 +1,88 @@
+
+Begin optimization report for: main(int, char **)
+
+    Report from: OpenMP optimizations [openmp]
+
+OpenMP Construct at nbody.c(80,1) inlined into nbody.c(127,2)
+   remark #16200: OpenMP DEFINED LOOP WAS PARALLELIZED
+OpenMP Construct at nbody.c(80,1) inlined into nbody.c(131,2)
+   remark #16200: OpenMP DEFINED LOOP WAS PARALLELIZED
+
+    Report from: Vector optimizations [vec]
+
+
+LOOP BEGIN at nbody.c(58,2) inlined into nbody.c(124,2)
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed OUTPUT dependence between Position line 60 and Acceleration line 61
+   remark #15346: vector dependence: assumed OUTPUT dependence between Acceleration line 61 and Position line 60
+LOOP END
+
+LOOP BEGIN at nbody.c(63,2) inlined into nbody.c(124,2)
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed OUTPUT dependence between Mass line 65 and Acceleration_Z line 71
+   remark #15346: vector dependence: assumed OUTPUT dependence between Acceleration_Z line 71 and Mass line 65
+LOOP END
+
+LOOP BEGIN at nbody.c(128,2)
+   remark #15398: loop was not vectorized: loop was transformed to memset or memcpy
+LOOP END
+
+LOOP BEGIN at nbody.c(81,2) inlined into nbody.c(127,2)
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed ANTI dependence between Position line 83 and Acceleration line 99
+   remark #15346: vector dependence: assumed FLOW dependence between Acceleration line 99 and Position line 83
+
+   LOOP BEGIN at nbody.c(85,3) inlined into nbody.c(127,2)
+      remark #15540: loop was not vectorized: auto-vectorization is disabled with -no-vec flag
+   LOOP END
+LOOP END
+
+LOOP BEGIN at nbody.c(81,2) inlined into nbody.c(131,2)
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed ANTI dependence between Position line 83 and Acceleration line 99
+   remark #15346: vector dependence: assumed FLOW dependence between Acceleration line 99 and Position line 83
+
+   LOOP BEGIN at nbody.c(85,3) inlined into nbody.c(131,2)
+      remark #15540: loop was not vectorized: auto-vectorization is disabled with -no-vec flag
+   LOOP END
+LOOP END
+===========================================================================
+
+Begin optimization report for: Perform_NBody()
+
+    Report from: OpenMP optimizations [openmp]
+
+OpenMP Construct at nbody.c(80,1)
+   remark #16200: OpenMP DEFINED LOOP WAS PARALLELIZED
+
+    Report from: Vector optimizations [vec]
+
+
+LOOP BEGIN at nbody.c(81,2)
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed ANTI dependence between Position line 83 and Acceleration line 99
+   remark #15346: vector dependence: assumed FLOW dependence between Acceleration line 99 and Position line 83
+
+   LOOP BEGIN at nbody.c(85,3)
+      remark #15540: loop was not vectorized: auto-vectorization is disabled with -no-vec flag
+   LOOP END
+LOOP END
+===========================================================================
+
+Begin optimization report for: Initialize()
+
+    Report from: Vector optimizations [vec]
+
+
+LOOP BEGIN at nbody.c(58,2)
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed OUTPUT dependence between Position line 60 and Acceleration line 61
+   remark #15346: vector dependence: assumed OUTPUT dependence between Acceleration line 61 and Position line 60
+LOOP END
+
+LOOP BEGIN at nbody.c(63,2)
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed OUTPUT dependence between Mass line 65 and Acceleration_Z line 71
+   remark #15346: vector dependence: assumed OUTPUT dependence between Acceleration_Z line 71 and Mass line 65
+LOOP END
+===========================================================================

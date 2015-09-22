@@ -23,7 +23,7 @@
 #include <omp.h>
 
 // Allow selection of floating-point type at compile-time.
-#define FPTYPE double
+#define FPTYPE float 
 #define SQRT sqrt
 
 
