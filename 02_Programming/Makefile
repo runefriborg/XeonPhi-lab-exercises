@@ -1,4 +1,4 @@
-VEC = -no-vec
+#VEC = -no-vec
 
 SRC = nbody.c
 

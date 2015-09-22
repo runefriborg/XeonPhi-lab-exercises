@@ -24,26 +24,86 @@ LOOP BEGIN at nbody.c(63,2) inlined into nbody.c(124,2)
 LOOP END
 
 LOOP BEGIN at nbody.c(128,2)
-   remark #15398: loop was not vectorized: loop was transformed to memset or memcpy
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at nbody.c(128,2)
+      remark #15389: vectorization support: reference Acceleration has unaligned access   [ nbody.c(128,45) ]
+      remark #15381: vectorization support: unaligned access used inside loop body
+      remark #15300: LOOP WAS VECTORIZED
+      remark #15451: unmasked unaligned unit stride stores: 1 
+      remark #15475: --- begin vector loop cost summary ---
+      remark #15476: scalar loop cost: 4 
+      remark #15477: vector loop cost: 1.370 
+      remark #15478: estimated potential speedup: 2.660 
+      remark #15479: lightweight vector operations: 2 
+      remark #15481: heavy-overhead vector operations: 1 
+      remark #15488: --- end vector loop cost summary ---
+   LOOP END
+
+   LOOP BEGIN at nbody.c(128,2)
+   <Remainder>
+   LOOP END
 LOOP END
 
 LOOP BEGIN at nbody.c(81,2) inlined into nbody.c(127,2)
-   remark #15344: loop was not vectorized: vector dependence prevents vectorization
-   remark #15346: vector dependence: assumed ANTI dependence between Position line 83 and Acceleration line 99
-   remark #15346: vector dependence: assumed FLOW dependence between Acceleration line 99 and Position line 83
+   remark #15542: loop was not vectorized: inner loop was already vectorized
 
    LOOP BEGIN at nbody.c(85,3) inlined into nbody.c(127,2)
-      remark #15540: loop was not vectorized: auto-vectorization is disabled with -no-vec flag
+   <Peeled>
+   LOOP END
+
+   LOOP BEGIN at nbody.c(85,3) inlined into nbody.c(127,2)
+      remark #15388: vectorization support: reference Mass has aligned access   [ nbody.c(92,34) ]
+      remark #15417: vectorization support: number of FP up converts: single precision to double precision 1   [ nbody.c(92,34) ]
+      remark #15417: vectorization support: number of FP up converts: single precision to double precision 1   [ nbody.c(92,13) ]
+      remark #15418: vectorization support: number of FP down converts: double precision to single precision 1   [ nbody.c(92,13) ]
+      remark #15300: LOOP WAS VECTORIZED
+      remark #15442: entire loop may be executed in remainder
+      remark #15448: unmasked aligned unit stride loads: 1 
+      remark #15460: masked strided loads: 3 
+      remark #15475: --- begin vector loop cost summary ---
+      remark #15476: scalar loop cost: 110 
+      remark #15477: vector loop cost: 24.500 
+      remark #15478: estimated potential speedup: 3.840 
+      remark #15479: lightweight vector operations: 66 
+      remark #15481: heavy-overhead vector operations: 1 
+      remark #15487: type converts: 3 
+      remark #15488: --- end vector loop cost summary ---
+   LOOP END
+
+   LOOP BEGIN at nbody.c(85,3) inlined into nbody.c(127,2)
+   <Remainder>
    LOOP END
 LOOP END
 
 LOOP BEGIN at nbody.c(81,2) inlined into nbody.c(131,2)
-   remark #15344: loop was not vectorized: vector dependence prevents vectorization
-   remark #15346: vector dependence: assumed ANTI dependence between Position line 83 and Acceleration line 99
-   remark #15346: vector dependence: assumed FLOW dependence between Acceleration line 99 and Position line 83
+   remark #15542: loop was not vectorized: inner loop was already vectorized
 
    LOOP BEGIN at nbody.c(85,3) inlined into nbody.c(131,2)
-      remark #15540: loop was not vectorized: auto-vectorization is disabled with -no-vec flag
+   <Peeled>
+   LOOP END
+
+   LOOP BEGIN at nbody.c(85,3) inlined into nbody.c(131,2)
+      remark #15388: vectorization support: reference Mass has aligned access   [ nbody.c(92,34) ]
+      remark #15417: vectorization support: number of FP up converts: single precision to double precision 1   [ nbody.c(92,34) ]
+      remark #15417: vectorization support: number of FP up converts: single precision to double precision 1   [ nbody.c(92,13) ]
+      remark #15418: vectorization support: number of FP down converts: double precision to single precision 1   [ nbody.c(92,13) ]
+      remark #15300: LOOP WAS VECTORIZED
+      remark #15442: entire loop may be executed in remainder
+      remark #15448: unmasked aligned unit stride loads: 1 
+      remark #15460: masked strided loads: 3 
+      remark #15475: --- begin vector loop cost summary ---
+      remark #15476: scalar loop cost: 110 
+      remark #15477: vector loop cost: 24.500 
+      remark #15478: estimated potential speedup: 3.840 
+      remark #15479: lightweight vector operations: 66 
+      remark #15481: heavy-overhead vector operations: 1 
+      remark #15487: type converts: 3 
+      remark #15488: --- end vector loop cost summary ---
+   LOOP END
+
+   LOOP BEGIN at nbody.c(85,3) inlined into nbody.c(131,2)
+   <Remainder>
    LOOP END
 LOOP END
 ===========================================================================
@@ -59,12 +119,33 @@ OpenMP Construct at nbody.c(80,1)
 
 
 LOOP BEGIN at nbody.c(81,2)
-   remark #15344: loop was not vectorized: vector dependence prevents vectorization
-   remark #15346: vector dependence: assumed ANTI dependence between Position line 83 and Acceleration line 99
-   remark #15346: vector dependence: assumed FLOW dependence between Acceleration line 99 and Position line 83
+   remark #15542: loop was not vectorized: inner loop was already vectorized
 
    LOOP BEGIN at nbody.c(85,3)
-      remark #15540: loop was not vectorized: auto-vectorization is disabled with -no-vec flag
+   <Peeled>
+   LOOP END
+
+   LOOP BEGIN at nbody.c(85,3)
+      remark #15388: vectorization support: reference Mass has aligned access   [ nbody.c(92,34) ]
+      remark #15417: vectorization support: number of FP up converts: single precision to double precision 1   [ nbody.c(92,34) ]
+      remark #15417: vectorization support: number of FP up converts: single precision to double precision 1   [ nbody.c(92,13) ]
+      remark #15418: vectorization support: number of FP down converts: double precision to single precision 1   [ nbody.c(92,13) ]
+      remark #15300: LOOP WAS VECTORIZED
+      remark #15442: entire loop may be executed in remainder
+      remark #15448: unmasked aligned unit stride loads: 1 
+      remark #15460: masked strided loads: 3 
+      remark #15475: --- begin vector loop cost summary ---
+      remark #15476: scalar loop cost: 110 
+      remark #15477: vector loop cost: 24.500 
+      remark #15478: estimated potential speedup: 3.840 
+      remark #15479: lightweight vector operations: 66 
+      remark #15481: heavy-overhead vector operations: 1 
+      remark #15487: type converts: 3 
+      remark #15488: --- end vector loop cost summary ---
+   LOOP END
+
+   LOOP BEGIN at nbody.c(85,3)
+   <Remainder>
    LOOP END
 LOOP END
 ===========================================================================
