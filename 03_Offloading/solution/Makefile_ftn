@@ -1,0 +1,18 @@
+VERSIONS = v0_orig v1_target v2_tofrom v3_data v4_declare
+TARGETS_OFFLOAD=$(addprefix nbody_, $(VERSIONS))
+
+all: $(TARGETS_OFFLOAD) nbody
+
+$(TARGETS_OFFLOAD): .ALWAYSEXEC
+	ifort -O3 -ansi-alias -openmp \
+	-debug inline-debug-info -o $@ $(subst -offload,,$@).F90 -xHost
+
+nbody: nbody_v0_orig.F90 .ALWAYSEXEC
+	ifort -O3 -no-openmp-offload -openmp -openmp-report \
+	-vec-report=5 -debug inline-debug-info -o $@ $< -xHost
+
+clean:
+	-rm -rf *~ *.o *.optrpt *.mod *.modmic
+	-rm -rf nbody $(TARGETS_OFFLOAD)
+
+.ALWAYSEXEC:

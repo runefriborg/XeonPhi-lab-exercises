@@ -1,0 +1,10 @@
+SRC = nbody.c
+
+nbody-offload: nbody.c
+	icc -O3 -ansi-alias -openmp -openmp-report -vec-report=5 -std=gnu99 -debug inline-debug-info -o $@ $< -xHost
+
+nbody: nbody.c
+	icc -O3 -ansi-alias -no-openmp-offload -openmp -openmp-report -vec-report=5 -std=gnu99 -debug inline-debug-info -o $@ $< -xHost
+
+clean:
+	-rm -rf *~ *.o nbody nbody-offload *.optrpt

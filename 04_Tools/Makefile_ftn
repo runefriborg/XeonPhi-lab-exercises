@@ -1,0 +1,21 @@
+SRC_ORIG = nbody_v0_orig.F90
+SRC_OPT = nbody_v5_blocked.F90
+
+TARGETS=nbody-orig nbody-opt nbody-orig.mic nbody-opt.mic
+
+all: $(TARGETS)
+
+nbody-orig: $(SRC_ORIG)
+	ifort -O3 -openmp -debug inline-debug-info -o $@ $< -xHost
+
+nbody-orig.mic: $(SRC_ORIG)
+	ifort -O3 -openmp -debug inline-debug-info -o $@ $< -mmic
+
+nbody-opt: $(SRC_OPT)
+	ifort -O3 -openmp -debug inline-debug-info -o $@ $< -xHost
+
+nbody-opt.mic: $(SRC_OPT)
+	ifort -O3 -openmp -debug inline-debug-info -o $@ $< -mmic
+
+clean:
+	-rm -rf *~ *.o $(TARGETS) *.optrpt *.mod

@@ -1,0 +1,10 @@
+SRF = nbody.F90
+
+nbody-offload: nbody.F90
+	ifort -O3 -openmp -openmp-report -vec-report=5 $(VEC) -fpp -debug inline-debug-info -o $@ $< -xHost
+
+nbody: nbody.F90
+	ifort -O3 -openmp -no-openmp-offload -openmp-report -vec-report=5 $(VEC) -fpp -debug inline-debug-info -o $@ $< -xHost
+
+clean:
+	-rm -rf *~ *.o nbody nbody-offload *.optrpt *.mod *.modmic

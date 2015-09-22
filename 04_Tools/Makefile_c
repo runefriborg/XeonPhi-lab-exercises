@@ -1,0 +1,21 @@
+SRC_ORIG = nbody_v0_orig.c
+SRC_OPT = nbody_v5_blocked.c
+
+TARGETS=nbody-orig nbody-opt nbody-orig.mic nbody-opt.mic
+
+all: $(TARGETS)
+
+nbody-orig: $(SRC_ORIG)
+	icc -O3 -ansi-alias -openmp -std=gnu99 -debug inline-debug-info -o $@ $< -xHost
+
+nbody-orig.mic: $(SRC_ORIG)
+	icc -O3 -ansi-alias -openmp -std=gnu99 -debug inline-debug-info -o $@ $< -mmic
+
+nbody-opt: $(SRC_OPT)
+	icc -O3 -ansi-alias -openmp -std=gnu99 -debug inline-debug-info -o $@ $< -xHost
+
+nbody-opt.mic: $(SRC_OPT)
+	icc -O3 -ansi-alias -openmp -std=gnu99 -debug inline-debug-info -o $@ $< -mmic
+
+clean:
+	-rm -rf *~ *.o $(TARGETS) *.optrpt
